@@ -1,0 +1,85 @@
+<!-- nav bar -->
+<nav class="navbar navbar-toggleable-md navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <h1 class='navbar-nav'>Collectible Clerics</h1>
+        </div>
+        <div class="navbar-right collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-link" routerLink="/about">About</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="row">
+    <div class="BorderDiv log col-md-offset-2 col-lg-4 col-sm-12">
+        <h2>Login</h2>
+        <form (submit)=submitLogin(login.value) #login="ngForm">
+            <div>
+                <label for="email">*Email: </label>
+                <input required type="email" name="email" id="email" #email="ngModel" [(ngModel)]="loginUser.email">
+            </div>
+            <div *ngIf="(email.touched || email.dirty) && email.errors">
+                <p class="alert">Email is required.</p>
+            </div>
+            <div>
+                <label for="password">*Password: </label>
+                <input required type="password" name="password" id="password" #password="ngModel" [(ngModel)]="loginUser.password">
+            </div>
+            <div *ngIf="(password.touched || password.dirty) && password.errors">
+                <p class="alert">Password is required.</p>
+            </div>
+            <button class="btn btn-lg btn-success" [disabled]="login.invalid">Login</button>
+        </form>
+    </div>
+    <div class="BorderDiv reg col-lg-4 col-sm-12">
+        <h2>Register</h2>
+        <form (submit)=submitRegister(register.value) #register="ngForm">
+            <!-- <div>
+                <label for="status">Status: </label>
+                <select name="status" id="status" #status="ngModel" [(ngModel)]="registerUser.status">
+                    <option value="admin">Admin</option>
+                    <option value="user">User</option>
+                </select>
+            </div> -->
+            <div>
+                <label for="username">*Username: </label>
+                <input type="text" name="username" id="username" required minlength="6" #username="ngModel" [(ngModel)]="registerUser.username">
+            </div>
+            <div *ngIf="(username.touched || username.dirty) && username.errors">
+                <p *ngIf="username.errors.required" class="alert">Username is required.</p>
+                <p *ngIf="username.errors.minlength" class="alert">Password must be at least 6 characters.</p>
+
+            </div>
+            <div>
+                <label for="email">*Email: </label>
+                <input type="email" name="email" id="email" required #email="ngModel" [(ngModel)]="registerUser.email">
+            </div>
+            <div *ngIf="(email.touched || email.dirty) && email.errors">
+                <p class="alert">Email is required.</p>
+            </div>
+            <div>
+                <label for="password">*Password: </label>
+                <input type="password" name="password" id="password" required minlength="6" #password="ngModel" [(ngModel)]="registerUser.password">
+            </div>
+            <div *ngIf="(password.touched || password.dirty) && password.errors">
+                <p *ngIf="password.errors.required" class="alert">Password is required.</p>
+                <p *ngIf="password.errors.minlength" class="alert">Password must be at least 6 characters.</p>
+            </div>
+            <div>
+                <label for="passwordConfirmation">*Password Confirmation</label>
+                <input type="password" name="passwordConfirmation" id="passwordConfirmation" required #passwordConfirmation="ngModel" [(ngModel)]="pwd_conf">
+            </div>
+            <div *ngIf="(passwordConfirmation.touched || passwordConfirmation.dirty) && passwordConfirmation.errors">
+                <p class="alert">Password confirmation is required.</p>
+                <p *ngIf="registerUser.password != pwd_conf" class="alert">Password must match password confirmation.</p>
+            </div>
+            <button class="btn btn-lg btn-success" [disabled]="register.invalid">Register</button>
+        </form>
+    </div>
+</div>

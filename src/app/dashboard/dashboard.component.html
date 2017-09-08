@@ -1,0 +1,210 @@
+<!-- nav bar -->
+<nav class="navbar navbar-toggleable-md navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+            <h1 class='navbar-nav'>Collectible Clerics</h1>
+        </div>
+        <div class="navbar-right collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-link" routerLink="/about">About</a></li>
+                <li><a class="nav-link" routerLink="/theodex">Theodex</a></li>
+                <li><a class="nav-link" routerLink="/profile">Profile</a></li>
+                <li><button (click)=logout() type="button" class="btn btn-xs navbar-btn"><a href="/logout" class="nav-link">Logout</a></button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="dashboard">
+    <h1>Dashboard</h1>
+    <br>
+    <h3>Cleric Cards</h3>
+
+    <form (submit)="createCard(newCard)" #newCard="ngForm">
+        <input type="text" name="number" #number="ngModel" [(ngModel)]="newCard.number" placeholder="Card Number">
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="newCard.name" placeholder="Card name">
+        <input type="text" name="theology" #theology="ngModel" [(ngModel)]="newCard.theology" placeholder="Card Theology">
+        <input type="text" name="quote" #quote="ngModel" [(ngModel)]="newCard.quote" placeholder="Card Quote">
+        <input type="text" name="bio" #bio="ngModel" [(ngModel)]="newCard.bio" placeholder="Card Bio">
+        <input type="text" name="link" #link="ngModel" [(ngModel)]="newCard.link" placeholder="Card Link">
+        <input type="text" name="imageUrl" #imageUrl="ngModel" [(ngModel)]="newCard.imageUrl" placeholder="Card Image Url">
+        <!-- NEED TO FIGURE OUT HOW TO HANDLE THIS DATA. -->
+        <!-- <label *ngFor="let user of users" class="checkbox"><input 
+        type="checkbox" name="users" #collectors="ngModel" [(ngModel)]="newCard.users" placeholder="Card Collectors" value="user._id">{{user.username}}</label> -->
+        <button>Create Card</button>
+    </form>
+    <br>
+    <table class=".table-striped .table-bordered">
+        <thead>
+            <tr>
+                <th>Number</th>
+                <th>Name</th>
+                <th>Theology</th>
+                <th>Quote</th>
+                <th>Bio</th>
+                <th>Link</th>
+                <th>Image Url</th>
+                <th>Collectors</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let card of cards">
+                <td>{{card.number}}</td>
+                <td>{{card.name}}</td>
+                <td>{{card.theology}}</td>
+                <td>{{card.quote}}</td>
+                <td>{{card.bio}}</td>
+                <td>{{card.link}}</td>
+                <td><img class="img-fluid" src="{{card.imageUrl}}" alt="Picture of theologian"></td>
+                <td>
+                    <ul>
+                        <li *ngFor="let user of card.collectors">{{user.username}} <button class="btn btn-xs" (click)="deleteCollector(card, user)">Delete Collector</button></li>
+                    </ul>
+                </td>
+                <td>
+                    <!-- Button trigger modal for Edit Card -->
+                    <button (click)="editCardTemplate(card)" class="btn btn-xs" data-toggle="modal" data-target="#editCardModal">Edit</button>
+                    <!-- Button trigger modal for add collector to card -->
+                    <button class="btn btn-xs" (click)="editCardTemplate(card)" data-toggle="modal" data-target="#addCollectorModal">Add Collector</button>
+                    <button class="btn btn-xs" (click)="deleteCard(card._id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Modal for editing card -->
+    <div class="modal fade" id="editCardModal" tabindex="-1" role="dialog" aria-labelledby="editCardModelLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCardModalLabel">Edit {{editedCard.name}} Card</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCard" #editCard="ngForm" (submit)="updateCard(editCard)">
+                        <input type="text" name="name" #name="ngModel" [(ngModel)]="editedCard.name" placeholder="{{editedCard.name}}">
+                        <input type="text" name="theology" #theology="ngModel" [(ngModel)]="editedCard.theology" placeholder="{{editedCard.theology}}">
+                        <input type="text" name="quote" #quote="ngModel" [(ngModel)]="editedCard.quote" placeholder="{{editedCard.quote}}">
+                        <input type="text" name="bio" #bio="ngModel" [(ngModel)]="editedCard.bio" placeholder="{{editedCard.bio}}">
+                        <input type="text" name="number" #number="ngModel" [(ngModel)]="editedCard.number" placeholder="{{editedCard.number}}">
+                        <input type="text" name="link" #link="ngModel" [(ngModel)]="editedCard.link" placeholder="{{editedCard.link}}">
+                        <input type="text" name="imageUrl" #imageUrl="ngModel" [(ngModel)]="editedCard.imageUrl" placeholder="{{editedCard.imageUrl}}">
+                        <!-- Figure out how to add and remove collectors using checkboxes from the input field for each card -->
+                        <!-- <label *ngFor="let user of users" class="checkbox"><input value="{{user._id}}" type="checkbox" name="users" #users="ngModel" [(ngModel)]="user._id" >{{user.username}}</label> -->
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" form="editCard">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal for adding collector to card -->
+    <div class="modal fade" id="addCollectorModal" tabindex="-1" role="dialog" aria-labelledby="addCollectorModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCollectorModalLabel">Add Collector to {{editedCard.name}}'s Card</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCollector" #addCollector="ngForm" (submit)="addCollectorToCard(addCollector)">
+                        <!-- Figure out how to add and remove collectors using checkboxes from the input field for each card -->
+                        <label *ngFor="let user of users" class="checkbox"></label>
+                        <select name="collector" #collector="ngModel" [(ngModel)]="editedCard.collector">
+                            <option value="" disabled selected="selected">Select...</option>
+                            <option *ngFor="let user of users" value="{{user._id}}">{{user.username}}</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" form="addCollector">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <h3>Collectors</h3>
+    <form (submit)=submitRegister(register.value) #register="ngForm">
+        <select name="status" id="status" #status="ngModel" [(ngModel)]="registerUser.status">
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+        <input type="text" name="username" placeholder="username" id="username" required #username="ngModel" [(ngModel)]="registerUser.username">
+        <input type="email" name="email" id="email" placeholder="email" required #email="ngModel" [(ngModel)]="registerUser.email">
+        <input type="password" name="password" placeholder="password" id="password" required minlength="6" #password="ngModel" [(ngModel)]="registerUser.password">
+        <input type="password" name="passwordConfirmation" placeholder="password confirmation" id="passwordConfirmation" required #passwordConfirmation="ngModel" [(ngModel)]="pwd_conf">
+        <button class="btn btn-lg btn-success" [disabled]="register.invalid">Register</button>
+    </form>
+    <table class=".table-striped .table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Status</th>
+                <th>Card Collection</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{user._id}}</td>
+                <td>{{user.username}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.status}}</td>
+                <td>
+                    <ul>
+                        <li *ngFor="let card of user.cardCollection">{{card.name}} <button class="btn btn-xs" (click)="deleteCardCollection(user, card)">Delete Card from Collection</button></li>
+                    </ul>
+                </td>
+                <td>
+                    <button (click)="editUserTemplate(user)" class="btn btn-xs" data-toggle="modal" data-target="#editUserModal">Edit</button>
+                    <button (click)="deleteUser(user._id)" class="btn btn-xs">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- Modal for editing user -->
+    <div class="modal fade" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="editUserModelLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editUserModalLabel">Edit {{editedUser.username}} Card</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editUser" #editUser="ngForm" (submit)="updateUser(editUser, $event)">
+                        <input type="text" name="username" #username="ngModel" [(ngModel)]="editedUser.username" placeholder="{{editedUser.username}}">
+                        <input type="email" name="email" #email="ngModel" [(ngModel)]="editedUser.email" placeholder="{{editedUser.email}}">
+                        <input type="password" name="password" #password="ngModel" [(ngModel)]="editedUser.password" placeholder="Password">
+                        <input type="password" name="passwordConfirmation" #passwordConfirmation="ngModel" [(ngModel)]="pw_conf" placeholder="Password Confirmation">
+                        <select name="status" id="status" #status="ngModel" [(ngModel)]="editedUser.status">
+                                <option value="admin">Admin</option>
+                                <option value="user">User</option>
+                            </select>
+                        <!-- Figure out how to add and remove cards using checkboxes from the input field for each card -->
+                        <label *ngFor="let card of cards" class="checkbox"><input value="{{card._id}}" type="checkbox" name="cardCollection" #cardCollection="ngModel" [(ngModel)]="card._id">{{card.name}}</label>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" form="editUser" data-dismiss="modal">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

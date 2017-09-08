@@ -1,0 +1,42 @@
+<!-- nav bar -->
+<nav class="navbar navbar-toggleable-md navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+            <h1 class='navbar-nav'>Collectible Clerics</h1>
+        </div>
+        <div class="navbar-right collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li *ngIf="currentUser == false"><a class="nav-link" routerLink="/">Home</a></li>
+                <li *ngIf="currentUser != false"><a class="nav-link" routerLink="/theodex">Theodex</a></li>
+                <li *ngIf="currentUser != false"><a class="nav-link" routerLink="/profile">Profile</a></li>
+                <li *ngIf="currentUser != false"><button (click)=logout() type="button" class="btn btn-xs navbar-btn"><a href="/logout" class="nav-link">Logout</a></button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main>
+    <h2>Theological Meets Digital</h2>
+    <p>Theologians consider the divine deeply and critically. From that process comes theology. The cards in this deck were inspired by Dr. James Cone's Intro to Systematic Theology course at <a href="utsnyc.edu">Union Theological Seminary in the city of New York</a>.
+        He emphasized that each of us have a theology. What's yours?</p>
+    <div class="row">
+        <div class="col-xs-offset-2 col-sm-offset-3 col-md-offset-4 col-lg-offset-4 col-xs-10 col-sm-9 col-md-8 col-lg-8">
+            <div *ngFor="let card of cards | search: filter" class="card" style="width: 30rem;">
+                <img class="card-img-top" src="{{card.imageUrl}}" alt="Picture of theologian">
+                <div class="card-block card-info">
+                    <h1 class="card-title">{{card.name}}</h1>
+                </div>
+                <div class="card-footer">
+                    <h2>#{{card.number}}</h2>
+                    <h5>{{card.theology}}</h5>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

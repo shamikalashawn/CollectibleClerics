@@ -1,0 +1,23 @@
+.log,
+.reg {
+    width: 300px;
+    display: inline-block;
+    margin: 100px;
+    height: 400px;
+}
+
+.log {
+    vertical-align: top;
+}
+
+.BorderDiv {
+    border: 2px solid black;
+}
+
+.alert {
+    color: red;
+}
+
+button {
+    margin: 15px auto;
+}

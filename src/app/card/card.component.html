@@ -1,0 +1,56 @@
+<!-- nav bar -->
+<nav class="navbar navbar-toggleable-md navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <h1 class='navbar-nav'>Collectible Clerics</h1>
+        </div>
+        <div class="navbar-right collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li><a class="nav-link" routerLink="/about">About</a></li>
+                <li><a class="nav-link" routerLink="/theodex">Theodex</a></li>
+                <li><a class="nav-link" routerLink="/profile">Profile</a></li>
+                <li><button type="button" class="btn btn-xs navbar-btn"><a href="/logout" class="nav-link">Logout</a></button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<main>
+    <div class="row">
+        <div class="col-xs-offset-1 col-sm-offset-1 col-md-offset-2 col-lg-offset-2 col-xs-10 col-sm-9 col-md-8 col-lg-8">
+            <div class="card" style="width: 100%;">
+                <div *ngIf="card.name == 'Arvind P. Nirmal'" class="crop">
+                    <img class="card-img-top" src="{{card.imageUrl}}" alt="Picture of theologian">
+                </div>
+                <img *ngIf="card.name != 'Arvind P. Nirmal'" class="card-img-top" src="{{card.imageUrl}}" alt="Picture of theologian">
+                <div class="card-block card-info">
+                    <h1 class="card-title">{{card.name}}</h1>
+                    <p class="card-text quote">{{card.quote}}</p>
+                    <p class="card-text">{{card.bio}}</p>
+                    <br>
+                    <p><a href="{{card.link}}">Click here</a> for more details on {{card.name}}. </p>
+                </div>
+                <div class="card-footer">
+                    <h2>#{{card.number}}</h2>
+                    <h5>{{card.theology}}</h5>
+                    <hr>
+                    <button *ngIf="userCardIDs.indexOf(card._id) === -1" class="collect-button btn btn-primary" (click)="collectCard(card)">Collect</button>
+                    <h6 *ngIf="userCardIDs.indexOf(card._id) != -1">You have collected this card!</h6>
+                    <button *ngIf="userCardIDs.indexOf(card._id) != -1" class="remove-button btn btn-primary" (click)="removeCard(card)">Remove from Collection</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <h3>Collectors of this card: </h3>
+    <div *ngFor="let user of card.collectors">
+        <h3 *ngIf="user._id != currentUser._id"><a class="nav-link" [routerLink]="['/user', user._id]">{{user.username}}</a></h3>
+        <h3 *ngIf="user._id === currentUser._id"><a class="nav-link" routerLink="/profile">{{user.username}}</a></h3>
+    </div>
+
+</main>

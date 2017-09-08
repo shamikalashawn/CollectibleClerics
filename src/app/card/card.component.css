@@ -1,0 +1,67 @@
+main {
+    margin: 50px;
+}
+
+h1,
+h3,
+h6 {
+    text-align: center;
+}
+
+.filterInput {
+    text-align: center;
+}
+
+img {
+    margin: 10px;
+    width: 97%;
+    height: 60rem;
+}
+
+.quote {
+    font-style: oblique;
+    font-weight: bolder;
+}
+
+.card-info {
+    height: 100%;
+    margin: 0px 10px;
+}
+
+.card {
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.card-columns {
+    margin-left: 50px;
+}
+
+button {
+    margin-bottom: 10px;
+}
+
+.card-footer {
+    height: 165px;
+    margin: 0px 10px;
+}
+
+.collect-button {
+    margin-left: 44%;
+}
+
+.remove-button {
+    margin-left: 37%;
+}
+
+.crop {
+    width: 510px;
+    height: 315px;
+    overflow: hidden;
+}
+
+.crop img {
+    width: 203%;
+    height: 494px;
+    margin: -176px 0px 0px 200px;
+}

@@ -1,0 +1,37 @@
+main {
+    margin: 50px;
+}
+
+h1,
+h3,
+h6 {
+    text-align: center;
+}
+
+.filterInput {
+    text-align: center;
+}
+
+img {
+    margin: 15px;
+    width: 89%;
+    height: 300px;
+}
+
+.quote {
+    font-style: oblique;
+    font-weight: bolder;
+}
+
+.card-info {
+    height: 100px;
+}
+
+.card {
+    border: 2px solid black;
+    margin: 5px;
+}
+
+.card-footer {
+    margin: 15px;
+}
