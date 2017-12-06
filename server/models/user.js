@@ -29,6 +29,12 @@ const userSchema = new Schema({
         required: true,
         trim: true,
         default: 'user'
+    },
+    communicate: {
+      type: Boolean,
+      required: true,
+      trim: true,
+      default: false
     }
 }, { timestamps: true })
 

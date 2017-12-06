@@ -5,6 +5,7 @@ export class User {
     password: string;
     status: string;
     cardCollection: Array<string>;
+    communicate: Boolean;
 
     constructor() {
         this.username = "";
@@ -12,5 +13,6 @@ export class User {
         this.password = "";
         this.status = "user";
         this.cardCollection = [];
+        this.communicate = false;
     }
 }

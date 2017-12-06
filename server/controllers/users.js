@@ -4,17 +4,28 @@ const Card = require('mongoose').model('Card');
 module.exports = {
     register(request, response) {
         console.log('in server registering user: ', request.body);
-        User.create(request.body)
-            .then(user => {
-                console.log('successfully created user: ', user);
-                request.session.user = user.toObject();
-                response.json(user);
-            })
-            .catch(error => {
-                response.status(422).json(
-                    Object.keys(error.errors).map(key => error.errors[key].message)
-                );
-            })
+        User.findOne({
+          $or: [
+            {"email": request.body.email},
+            {"username": request.body.username}
+          ]
+        })
+          .then(user => {
+            if (user) throw new Error("Please register with an alternate email or username.")})
+            else {
+              User.create(request.body)
+                  .then(user => {
+                      console.log('successfully created user: ', user);
+                      request.session.user = user.toObject();
+                      response.json(user);
+                  })
+                  .catch(error => {
+                      response.status(422).json(
+                          Object.keys(error.errors).map(key => error.errors[key].message)
+                      );
+                  })
+            }
+          .catch(error => console.log("error registering user: ", error))
     },
     login(request, response) {
         User.find({})
@@ -62,7 +73,7 @@ module.exports = {
                 })
                 .catch(error => console.log('error getting user by id: ', error));
         } else {
-            console.log('request.session: ', request.session)
+            console.log('request.session: ', request.session);
             throw new Error("user not in request.session");
         }
 
