@@ -13,6 +13,7 @@ export class LogRegComponent implements OnInit {
   loginUser = new User();
   registerUser = new User();
   logRegErrors: string[] = []
+  registerFail: Boolean = false;
 
   constructor(private _user: UserService, private _router: Router) { }
 
@@ -26,16 +27,24 @@ export class LogRegComponent implements OnInit {
     console.log('logReg component sending registration info: ', user);
     this._user.register(user)
       .then(user => {
-        this.registerUser = new User();
-        if (user.status == "admin") {
-          this._router.navigate(['/dashboard']);
+        console.log('user: ', user);
+        if (!(user instanceof Error)){
+          this.registerUser = new User();
+          if (user.status == "admin") {
+            this._router.navigate(['/dashboard']);
+          }
+          else {
+            this._router.navigate(['/theodex']);
+          }
         }
-        else{
-          this._router.navigate(['/theodex']);
+        else {
+          console.log("Please register with an alternate email or username.");
         }
       })
       .catch(error => {
-        console.log('error registering user from logReg component: ', error);
+        this.registerFail = true;
+        console.log("registerFail var: ", this.registerFail);
+        console.log('(ts file)error registering user from logReg component: ', error);
       })
   }
 
@@ -50,7 +59,7 @@ export class LogRegComponent implements OnInit {
           this._router.navigate(['/theodex']);
         }
       })
-      .catch(error => { 
+      .catch(error => {
         console.log('error logging in: ', error);
       })
   }

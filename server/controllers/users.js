@@ -11,7 +11,11 @@ module.exports = {
           ]
         })
           .then(user => {
-            if (user) throw new Error("Please register with an alternate email or username.")})
+            if (user) {
+              // throw new Error("Please register with an alternate email or username.");
+              response.status(500);
+              response.json("(Server)Please register with an alternate email or username.")
+          }
             else {
               User.create(request.body)
                   .then(user => {
@@ -25,6 +29,7 @@ module.exports = {
                       );
                   })
             }
+          })
           .catch(error => console.log("error registering user: ", error))
     },
     login(request, response) {
