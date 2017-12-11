@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const { Schema } = mongoose;
-const bcrypt = require('bcrypt-as-promised');
+// const bcrypt = require('bcrypt-as-promised');
+const bcrypt = require('bcryptjs');
 const validator = require('validator');
 
 const userSchema = new Schema({
