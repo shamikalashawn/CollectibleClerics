@@ -65,7 +65,7 @@
             </div>
             <div>
                 <label for="rpassword">*Password: </label>
-                <input type="rpassword" name="rpassword" id="rpassword" required minlength="6" #rpassword="ngModel" [(ngModel)]="registerUser.password">
+                <input type="password" name="rpassword" id="rpassword" required minlength="6" #rpassword="ngModel" [(ngModel)]="registerUser.password">
             </div>
             <div *ngIf="(rpassword.touched || rpassword.dirty) && rpassword.errors">
                 <p *ngIf="rpassword.errors.required" class="alert">Password is required.</p>
