@@ -36,7 +36,7 @@
             </div>
             <button class="btn btn-lg btn-success" [disabled]="login.invalid">Login</button>
         </form>
-        <p *ngIf="loginFail" class="alert">Please use alternate username or email address for login.</p>        
+        <p *ngIf="loginFail" class="alert">Please use alternate username or email address for login.</p>
     </div>
     <div class="BorderDiv reg col-lg-4 col-sm-12">
         <h2>Register</h2>
@@ -82,10 +82,13 @@
             </div>
             <div>
                 <p>*Would you like to receive email updates from Collectible Clerics?: </p>
-                <input type="checkbox" name="communicate" value="Yes" id="communicateY" required #communicateY="ngModel" [(ngModel)]="registerUser.communicate">
-                <input type="checkbox" name="communicate" value="No" id="communicateN" required #communicateN="ngModel" [(ngModel)]="registerUser.communicate">
+                <select name="communicate" id="communicate" #communicate="ngModel" [(ngModel)]="registerUser.communicate">
+                  <option value="">Please choose an option</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
+                </select>
             </div>
-            <div *ngIf="((communicateY.touched || communicateY.dirty)) || (communicateN.touched || communicateN.dirty)) && (!communicateN.errors && !communicateY.errors))">
+            <div *ngIf="((communicate.touched || communicate.dirty)) && (registerUser.communicate == "")">
                 <p class="alert">Please confirm your email preference.</p>
             </div>
             <button class="btn btn-lg btn-success" [disabled]="register.invalid">Register</button>
