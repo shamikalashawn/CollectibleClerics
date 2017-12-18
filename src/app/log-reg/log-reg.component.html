@@ -90,5 +90,6 @@
             <button class="btn btn-lg btn-success" [disabled]="register.invalid">Register</button>
         </form>
         <p *ngIf="registerFail" class="alert">Please use alternate username or email address for registration.</p>
+        <p *ngIf="loginFail" class="alert">Please use alternate username or email address for login.</p>
     </div>
 </div>
