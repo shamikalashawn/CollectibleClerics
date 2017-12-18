@@ -57,19 +57,19 @@
 
             </div>
             <div>
-                <label for="email">*Email: </label>
-                <input type="email" name="email" id="email" required #email="ngModel" [(ngModel)]="registerUser.email">
+                <label for="remail">*Email: </label>
+                <input type="remail" name="remail" id="remail" required #remail="ngModel" [(ngModel)]="registerUser.email">
             </div>
-            <div *ngIf="(email.touched || email.dirty) && email.errors">
+            <div *ngIf="(remail.touched || remail.dirty) && remail.errors">
                 <p class="alert">Email is required.</p>
             </div>
             <div>
-                <label for="password">*Password: </label>
-                <input type="password" name="password" id="password" required minlength="6" #password="ngModel" [(ngModel)]="registerUser.password">
+                <label for="rpassword">*Password: </label>
+                <input type="rpassword" name="rpassword" id="rpassword" required minlength="6" #rpassword="ngModel" [(ngModel)]="registerUser.password">
             </div>
-            <div *ngIf="(password.touched || password.dirty) && password.errors">
-                <p *ngIf="password.errors.required" class="alert">Password is required.</p>
-                <p *ngIf="password.errors.minlength" class="alert">Password must be at least 6 characters.</p>
+            <div *ngIf="(rpassword.touched || rpassword.dirty) && rpassword.errors">
+                <p *ngIf="rpassword.errors.required" class="alert">Password is required.</p>
+                <p *ngIf="rpassword.errors.minlength" class="alert">Password must be at least 6 characters.</p>
             </div>
             <div>
                 <label for="passwordConfirmation">*Password Confirmation</label>
