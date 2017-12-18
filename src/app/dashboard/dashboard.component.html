@@ -34,7 +34,7 @@
         <input type="text" name="link" #link="ngModel" [(ngModel)]="newCard.link" placeholder="Card Link">
         <input type="text" name="imageUrl" #imageUrl="ngModel" [(ngModel)]="newCard.imageUrl" placeholder="Card Image Url">
         <!-- NEED TO FIGURE OUT HOW TO HANDLE THIS DATA. -->
-        <!-- <label *ngFor="let user of users" class="checkbox"><input 
+        <!-- <label *ngFor="let user of users" class="checkbox"><input
         type="checkbox" name="users" #collectors="ngModel" [(ngModel)]="newCard.users" placeholder="Card Collectors" value="user._id">{{user.username}}</label> -->
         <button>Create Card</button>
     </form>
@@ -61,7 +61,8 @@
                 <td>{{card.quote}}</td>
                 <td>{{card.bio}}</td>
                 <td>{{card.link}}</td>
-                <td><img class="img-fluid" src="{{card.imageUrl}}" alt="Picture of theologian"></td>
+                <td><img class="img-fluid" src="{{card.imageUrl}}" alt="Picture of theologian">
+                <p>{{card.imageUrl}}</p></td>
                 <td>
                     <ul>
                         <li *ngFor="let user of card.collectors">{{user.username}} <button class="btn btn-xs" (click)="deleteCollector(card, user)">Delete Collector</button></li>
@@ -150,7 +151,6 @@
     <table class=".table-striped .table-bordered">
         <thead>
             <tr>
-                <th>ID</th>
                 <th>Username</th>
                 <th>Email</th>
                 <th>Status</th>
@@ -160,7 +160,6 @@
         </thead>
         <tbody>
             <tr *ngFor="let user of users">
-                <td>{{user._id}}</td>
                 <td>{{user.username}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.status}}</td>
@@ -192,7 +191,7 @@
                         <input type="email" name="email" #email="ngModel" [(ngModel)]="editedUser.email" placeholder="{{editedUser.email}}">
                         <input type="password" name="password" #password="ngModel" [(ngModel)]="editedUser.password" placeholder="Password">
                         <input type="password" name="passwordConfirmation" #passwordConfirmation="ngModel" [(ngModel)]="pw_conf" placeholder="Password Confirmation">
-                        <select name="status" id="status" #status="ngModel" [(ngModel)]="editedUser.status">
+                        <select name="userStatus" id="userStatus" #userStatus="ngModel" [(ngModel)]="editedUser.status">
                                 <option value="admin">Admin</option>
                                 <option value="user">User</option>
                             </select>
