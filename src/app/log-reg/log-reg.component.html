@@ -59,7 +59,7 @@
             </div>
             <div>
                 <label for="remail">*Email: </label>
-                <input type="remail" name="remail" id="remail" required #remail="ngModel" [(ngModel)]="registerUser.email">
+                <input type="email" name="remail" id="remail" required #remail="ngModel" [(ngModel)]="registerUser.email">
             </div>
             <div *ngIf="(remail.touched || remail.dirty) && remail.errors">
                 <p class="alert">Email is required.</p>
