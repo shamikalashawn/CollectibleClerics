@@ -36,6 +36,7 @@
             </div>
             <button class="btn btn-lg btn-success" [disabled]="login.invalid">Login</button>
         </form>
+        <p *ngIf="loginFail" class="alert">Please use alternate username or email address for login.</p>        
     </div>
     <div class="BorderDiv reg col-lg-4 col-sm-12">
         <h2>Register</h2>
@@ -90,6 +91,5 @@
             <button class="btn btn-lg btn-success" [disabled]="register.invalid">Register</button>
         </form>
         <p *ngIf="registerFail" class="alert">Please use alternate username or email address for registration.</p>
-        <p *ngIf="loginFail" class="alert">Please use alternate username or email address for login.</p>
     </div>
 </div>
