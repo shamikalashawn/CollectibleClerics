@@ -79,14 +79,14 @@
                 <p class="alert">Password confirmation is required.</p>
                 <p *ngIf="registerUser.password != pwd_conf" class="alert">Password must match password confirmation.</p>
             </div>
-            <!-- <div>
+            <div>
                 <p>*Would you like to receive email updates from Collectible Clerics?: </p>
                 <input type="checkbox" name="communicate" value="Yes" id="communicateY" required #communicateY="ngModel" [(ngModel)]="registerUser.communicate">
                 <input type="checkbox" name="communicate" value="No" id="communicateN" required #communicateN="ngModel" [(ngModel)]="registerUser.communicate">
             </div>
             <div *ngIf="((communicateY.touched || communicateY.dirty)) || (communicateN.touched || communicateN.dirty)) && (!communicateN.errors && !communicateY.errors))">
                 <p class="alert">Please confirm your email preference.</p>
-            </div> -->
+            </div>
             <button class="btn btn-lg btn-success" [disabled]="register.invalid">Register</button>
         </form>
         <p *ngIf="registerFail" class="alert">Please use alternate username or email address for registration.</p>
