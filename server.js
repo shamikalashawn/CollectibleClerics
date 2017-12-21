@@ -15,7 +15,7 @@ app.use(parser.json());
 
 //connect angular app
 // app.use(express.static(path.join(__dirname, 'dist')));
-app.use(express.static(path.join(__dirname, 'dist'){maxage: 0}));
+app.use(express.static(path.join(__dirname, 'dist')){maxage: 0});
 
 //session and cookie
 const sessionConfig = {
