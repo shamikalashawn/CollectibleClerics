@@ -130,7 +130,7 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__about_about_component__ = __webpack_require__("../../../../../src/app/about/about.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__card_card_component__ = __webpack_require__("../../../../../src/app/card/card.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__dashboard_dashboard_component__ = __webpack_require__("../../../../../src/app/dashboard/dashboard.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__log_reg_log_reg_component__ = __webpack_require__("../../../../../src/app/log-reg/log-reg.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__log_reg_log_reg_component__ = __webpack_require__("../../../../../src/app/logreg/logreg.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__profile_profile_component__ = __webpack_require__("../../../../../src/app/profile/profile.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__theodex_theodex_component__ = __webpack_require__("../../../../../src/app/theodex/theodex.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__user_user_component__ = __webpack_require__("../../../../../src/app/user/user.component.ts");
@@ -267,7 +267,7 @@ AppComponent = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__("../../../forms/@angular/forms.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_http__ = __webpack_require__("../../../http/@angular/http.es5.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__("../../../../../src/app/app.component.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__log_reg_log_reg_component__ = __webpack_require__("../../../../../src/app/log-reg/log-reg.component.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__log_reg_log_reg_component__ = __webpack_require__("../../../../../src/app/logreg/logreg.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__theodex_theodex_component__ = __webpack_require__("../../../../../src/app/theodex/theodex.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__user_user_component__ = __webpack_require__("../../../../../src/app/user/user.component.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__card_card_component__ = __webpack_require__("../../../../../src/app/card/card.component.ts");
@@ -834,7 +834,7 @@ var User = (function () {
 
 /***/ }),
 
-/***/ "../../../../../src/app/log-reg/log-reg.component.css":
+/***/ "../../../../../src/app/logreg/logreg.component.css":
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__("../../../../css-loader/lib/css-base.js")(false);
@@ -852,14 +852,14 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ "../../../../../src/app/log-reg/log-reg.component.html":
+/***/ "../../../../../src/app/logreg/logreg.component.html":
 /***/ (function(module, exports) {
 
 module.exports = "<!-- nav bar -->\n<nav class=\"navbar navbar-toggleable-md navbar-inverse navbar-fixed-top\">\n    <div class=\"container\">\n        <div class=\"navbar-header header\">\n            <button type=\"button\" class=\"navbar-toggle\" data-toggle=\"collapse\" data-target=\"#myNavbar\">\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n            <span class=\"icon-bar\"></span>\n          </button>\n            <h1 class='navbar-nav'>Collectible Clerics</h1>\n        </div>\n        <div class=\"navbar-right collapse navbar-collapse\" id=\"myNavbar\">\n            <ul class=\"nav navbar-nav\">\n                <li><a class=\"nav-link\" routerLink=\"/about\">About</a></li>\n            </ul>\n        </div>\n    </div>\n</nav>\n<div class=\"row\">\n    <div class=\"BorderDiv log col-md-offset-2 col-lg-4 col-sm-12\">\n        <h2>Login</h2>\n        <form (submit)=submitLogin(login.value) #login=\"ngForm\">\n            <div>\n                <label for=\"email\">*Email: </label>\n                <input required type=\"email\" name=\"email\" id=\"email\" #email=\"ngModel\" [(ngModel)]=\"loginUser.email\">\n            </div>\n            <div *ngIf=\"(email.touched || email.dirty) && email.errors\">\n                <p class=\"alert\">Email is required.</p>\n            </div>\n            <div>\n                <label for=\"password\">*Password: </label>\n                <input required type=\"password\" name=\"password\" id=\"password\" #password=\"ngModel\" [(ngModel)]=\"loginUser.password\">\n            </div>\n            <div *ngIf=\"(password.touched || password.dirty) && password.errors\">\n                <p class=\"alert\">Password is required.</p>\n            </div>\n            <button class=\"btn btn-lg btn-success\" [disabled]=\"login.invalid\">Login</button>\n        </form>\n        <p *ngIf=\"loginFail\" class=\"alert\">Please use alternate username or email address for login.</p>\n    </div>\n    <div class=\"BorderDiv reg col-lg-4 col-sm-12\">\n        <h2>Register</h2>\n        <form (submit)=submitRegister(register.value) #register=\"ngForm\">\n            <div>\n                <label for=\"status\">Status: </label>\n                <select name=\"status\" id=\"status\" #status=\"ngModel\" [(ngModel)]=\"registerUser.status\">\n                    <option value=\"admin\">Admin</option>\n                    <option value=\"user\">User</option>\n                </select>\n            </div>\n            <div>\n                <label for=\"username\">*Username: </label>\n                <input type=\"text\" name=\"username\" id=\"username\" required minlength=\"6\" #username=\"ngModel\" [(ngModel)]=\"registerUser.username\">\n            </div>\n            <div *ngIf=\"(username.touched || username.dirty) && username.errors\">\n                <p *ngIf=\"username.errors.required\" class=\"alert\">Username is required.</p>\n                <p *ngIf=\"username.errors.minlength\" class=\"alert\">Username must be at least 6 characters.</p>\n\n            </div>\n            <div>\n                <label for=\"remail\">*Email: </label>\n                <input type=\"remail\" name=\"remail\" id=\"remail\" required #remail=\"ngModel\" [(ngModel)]=\"registerUser.email\">\n            </div>\n            <div *ngIf=\"(remail.touched || remail.dirty) && remail.errors\">\n                <p class=\"alert\">Email is required.</p>\n            </div>\n            <div>\n                <label for=\"rpassword\">*Password: </label>\n                <input type=\"password\" name=\"rpassword\" id=\"rpassword\" required minlength=\"6\" #rpassword=\"ngModel\" [(ngModel)]=\"registerUser.password\">\n            </div>\n            <div *ngIf=\"(rpassword.touched || rpassword.dirty) && rpassword.errors\">\n                <p *ngIf=\"rpassword.errors.required\" class=\"alert\">Password is required.</p>\n                <p *ngIf=\"rpassword.errors.minlength\" class=\"alert\">Password must be at least 6 characters.</p>\n            </div>\n            <div>\n                <label for=\"passwordConfirmation\">*Password Confirmation</label>\n                <input type=\"password\" name=\"passwordConfirmation\" id=\"passwordConfirmation\" required #passwordConfirmation=\"ngModel\" [(ngModel)]=\"pwd_conf\">\n            </div>\n            <div *ngIf=\"(passwordConfirmation.touched || passwordConfirmation.dirty) && passwordConfirmation.errors\">\n                <p class=\"alert\">Password confirmation is required.</p>\n                <p *ngIf=\"registerUser.password != pwd_conf\" class=\"alert\">Password must match password confirmation.</p>\n            </div>\n            <!-- <div>\n                <p>*Would you like to receive email updates from Collectible Clerics?: </p>\n                <input type=\"checkbox\" name=\"communicate\" value=\"Yes\" id=\"communicateY\" required #communicateY=\"ngModel\" [(ngModel)]=\"registerUser.communicate\">\n                <input type=\"checkbox\" name=\"communicate\" value=\"No\" id=\"communicateN\" required #communicateN=\"ngModel\" [(ngModel)]=\"registerUser.communicate\">\n            </div>\n            <div *ngIf=\"((communicateY.touched || communicateY.dirty)) || (communicateN.touched || communicateN.dirty)) && (!communicateN.errors && !communicateY.errors)\">\n                <p class=\"alert\">Please confirm your email preference.</p>\n            </div> -->\n            <button class=\"btn btn-lg btn-success\" [disabled]=\"register.invalid\">Register</button>\n        </form>\n        <p *ngIf=\"registerFail\" class=\"alert\">Please use alternate username or email address for registration.</p>\n    </div>\n</div>\n"
 
 /***/ }),
 
-/***/ "../../../../../src/app/log-reg/log-reg.component.ts":
+/***/ "../../../../../src/app/logreg/logreg.component.ts":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -943,15 +943,15 @@ var LogRegComponent = (function () {
 }());
 LogRegComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_14" /* Component */])({
-        selector: 'app-log-reg',
-        template: __webpack_require__("../../../../../src/app/log-reg/log-reg.component.html"),
-        styles: [__webpack_require__("../../../../../src/app/log-reg/log-reg.component.css")]
+        selector: 'app-logreg',
+        template: __webpack_require__("../../../../../src/app/logreg/logreg.component.html"),
+        styles: [__webpack_require__("../../../../../src/app/logreg/logreg.component.css")]
     }),
     __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__services_user_service__["a" /* UserService */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__angular_router__["b" /* Router */]) === "function" && _b || Object])
 ], LogRegComponent);
 
 var _a, _b;
-//# sourceMappingURL=log-reg.component.js.map
+//# sourceMappingURL=logreg.component.js.map
 
 /***/ }),
 

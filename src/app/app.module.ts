@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { LogRegComponent } from './log-reg/log-reg.component';
+import { LogRegComponent } from './logreg/logreg.component';
 import { TheodexComponent } from './theodex/theodex.component';
 import { UserComponent } from './user/user.component';
 import { CardComponent } from './card/card.component';
@@ -26,7 +26,7 @@ import { ProfileComponent } from './profile/profile.component';
     UserComponent,
     CardComponent,
     DashboardComponent,
-    AboutComponent, 
+    AboutComponent,
     SearchPipe, ProfileComponent,
   ],
   imports: [

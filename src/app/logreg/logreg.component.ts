@@ -4,9 +4,9 @@ import { Router } from '@angular/router';
 import { User } from '../data/user';
 
 @Component({
-  selector: 'app-log-reg',
-  templateUrl: './log-reg.component.html',
-  styleUrls: ['./log-reg.component.css']
+  selector: 'app-logreg',
+  templateUrl: './logreg.component.html',
+  styleUrls: ['./logreg.component.css']
 })
 export class LogRegComponent implements OnInit {
   pwd_conf: string;
