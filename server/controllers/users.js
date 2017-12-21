@@ -51,7 +51,7 @@ module.exports = {
             })
             .catch(error => {
               console.log('error logging in user: ', error)
-              response.json(error);
+              response.status(401).json(error);
             });
     },
     logout(request, response) {
