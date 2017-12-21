@@ -42,16 +42,17 @@ const userSchema = new Schema({
 userSchema.pre('save', function(next) {
     if (!this.isModified('password')) { return next(); }
 
-    bcrypt.hash(this.password, 10)
-        .then(hashed => {
-            this.password = hashed;
-            next();
-        })
-        .catch(next);
+    bcrypt.hash(this.password, 10,(error, hashed) => {
+      if(error){
+        return next(error);
+      }
+      this.password = hashed;
+      next();
+    })
 })
 
 userSchema.statics.validatePassword = function(candidatePassword, hashedPassword) {
-    return bcrypt.compare(candidatePassword, hashedPassword);
+    return bcrypt.compareSync(candidatePassword, hashedPassword);
 };
 
 

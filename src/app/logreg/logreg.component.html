@@ -35,8 +35,8 @@
                 <p class="alert">Password is required.</p>
             </div>
             <button class="btn btn-lg btn-success" [disabled]="login.invalid">Login</button>
+            <p *ngIf="loginFail" class="alert">Please use alternate username or email address for login.</p>
         </form>
-        <p *ngIf="loginFail" class="alert">Please use alternate username or email address for login.</p>
     </div>
     <div class="BorderDiv reg col-lg-4 col-sm-12">
         <h2>Register</h2>
@@ -92,8 +92,8 @@
                 <p class="alert">Please confirm your email preference.</p>
             </div>
             <button class="btn btn-lg btn-success" [disabled]="register.invalid">Register</button>
+            <p *ngIf="registerFail" class="alert">Please use alternate username or email address for registration.</p>
         </form>
-        <p *ngIf="registerFail" class="alert">Please use alternate username or email address for registration.</p>
     </div>
-    <p>Thanks for registering!</p>	
+    <p>Thanks for registering!</p>
 </div>
