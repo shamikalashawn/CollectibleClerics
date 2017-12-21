@@ -40,12 +40,14 @@ module.exports = {
             .then(user => {
                 console.log('user found: ', user);
                 if (!user) throw new Error("user not found");
-                User.validatePassword(request.body.password, user.password)
-                    .then(() => {
-                        request.session.user = user.toObject();
-                        response.json(user);
-                    })
-                    .catch(error => console.log('error validating password: ', error))
+                if (User.validatePassword(request.body.password, user.password)) {
+                  request.session.user = user.toObject();
+                  response.json(user);
+
+                }
+                else {
+                  throw new Error ("error logging in user")
+                }
             })
             .catch(error => console.log('error logging in user: ', error));
     },

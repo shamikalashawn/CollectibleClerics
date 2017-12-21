@@ -15,6 +15,7 @@ export class LogRegComponent implements OnInit {
   logRegErrors: string[] = []
   registerFail: Boolean = false;
   loginFail: Boolean = false;
+  logregError: string = '';
 
   constructor(private _user: UserService, private _router: Router) { }
 
@@ -43,6 +44,8 @@ export class LogRegComponent implements OnInit {
         }
       })
       .catch(error => {
+        this.logregError = error.json();
+        console.log('error: ', this.logregError);
         this.registerFail = true;
         console.log("registerFail var: ", this.registerFail);
         console.log('(ts file)error registering user from logReg component: ', error);
