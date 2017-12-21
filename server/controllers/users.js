@@ -49,7 +49,10 @@ module.exports = {
                   throw new Error ("error logging in user")
                 }
             })
-            .catch(error => console.log('error logging in user: ', error));
+            .catch(error => {
+              console.log('error logging in user: ', error)
+              response.json(error);
+            });
     },
     logout(request, response) {
         console.log('logging out from server');
