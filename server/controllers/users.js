@@ -12,9 +12,9 @@ module.exports = {
         })
           .then(user => {
             if (user) {
-              // throw new Error("Please register with an alternate email or username.");
-              response.status(500);
-              response.json("(Server)Please register with an alternate email or username.")
+              newError = new Error("Please register with an alternate email or username.");
+              console.log('registration failed due to user email or username duplication.');
+              response.status(401).json(newError);
           }
             else {
               User.create(request.body)
@@ -24,18 +24,21 @@ module.exports = {
                       response.json(user);
                   })
                   .catch(error => {
-                      response.status(422).json(
-                          Object.keys(error.errors).map(key => error.errors[key].message)
-                      );
+                      // response.status(401).json(Object.keys(error.errors).map(key => error.errors[key].message));
+                      console.log('error registering user: ', error);
+                      response.status(401).json(error);
                   })
             }
           })
-          .catch(error => console.log("error registering user: ", error))
+          .catch(error => {
+            console.log("error registering user: ", error)
+            response.status(401).json(error);
+          })
     },
     login(request, response) {
-        User.find({})
-            .then(users => console.log('all users: ', users))
-            .catch(error => console.log('error finding all users: ', error))
+        // User.find({})
+        //     .then(users => console.log('all users: ', users))
+        //     .catch(error => console.log('error finding all users: ', error))
         User.findOne({ "email": request.body.email })
             .then(user => {
                 console.log('user found: ', user);
@@ -43,7 +46,6 @@ module.exports = {
                 if (User.validatePassword(request.body.password, user.password)) {
                   request.session.user = user.toObject();
                   response.json(user);
-
                 }
                 else {
                   throw new Error ("error logging in user")
