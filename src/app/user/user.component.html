@@ -12,10 +12,11 @@
         </div>
         <div class="navbar-right collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li><a class="nav-link" routerLink="/about">About</a></li>
-                <li><a class="nav-link" routerLink="/theodex">Theodex</a></li>
-                <li><a class="nav-link" routerLink="/profile">Profile</a></li>
-                <li><button (click)=logout() type="button" class="btn btn-xs navbar-btn"><a href="/logout" class="nav-link">Logout</a></button></li>
+              <li *ngIf="currentUser.status == 'admin'"><a class="nav-link" routerLink="/dashboard">Dashboard</a></li>
+              <li><a class="nav-link" routerLink="/about">About</a></li>
+              <li><a class="nav-link" routerLink="/theodex">Theodex</a></li>
+              <li><a class="nav-link" routerLink="/profile">Profile</a></li>
+              <li><button (click)=logout() type="button" class="btn btn-xs navbar-btn"><a href="/logout" class="nav-link">Logout</a></button></li>
             </ul>
         </div>
     </div>
@@ -45,7 +46,7 @@
             <option value="Hispanic American">Hispanic American</option>
             <option value="Mujerista">Mujerista</option>
             <option value="Process">Process</option>
-            <option value="Ethics">Ethics</option>            
+            <option value="Ethics">Ethics</option>
         </select>
     </p>
     <!-- display user's collection of cards -->

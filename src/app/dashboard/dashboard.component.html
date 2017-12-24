@@ -12,6 +12,7 @@
         </div>
         <div class="navbar-right collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
+                <li *ngIf="currentUser.status == 'admin'"><a class="nav-link" routerLink="/dashboard">Dashboard</a></li>
                 <li><a class="nav-link" routerLink="/about">About</a></li>
                 <li><a class="nav-link" routerLink="/theodex">Theodex</a></li>
                 <li><a class="nav-link" routerLink="/profile">Profile</a></li>
